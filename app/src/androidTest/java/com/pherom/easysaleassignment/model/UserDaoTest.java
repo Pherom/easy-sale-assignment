@@ -30,6 +30,28 @@ public class UserDaoTest {
     }
 
     @Test
+    public void testInsertAndGetAllUsers() throws InterruptedException {
+        User user1 = new User("johndoe@emailprovider.com", "John", "Doe", "https://avatarprovider.com/johndoe_avatar.jpg");
+        User user2 = new User("janesmith@emailprovider.com", "Jane", "Smith", "https://avatarprovider.com/janesmith_avatar.jpg");
+        userDao.insert(user1);
+        user1.setId(1);
+        userDao.insert(user2);
+        user2.setId(2);
+
+        List<User> allUsers = LiveDataTestUtil.getOrAwaitValue(userDao.getAllUsers());
+        assertNotNull(allUsers);
+        assertEquals(2, allUsers.size());
+        assertEquals("johndoe@emailprovider.com", allUsers.get(0).getEmail());
+        assertEquals("John", allUsers.get(0).getFirstName());
+        assertEquals("Doe", allUsers.get(0).getLastName());
+        assertEquals("https://avatarprovider.com/johndoe_avatar.jpg", allUsers.get(0).getAvatar());
+        assertEquals("janesmith@emailprovider.com", allUsers.get(1).getEmail());
+        assertEquals("Jane", allUsers.get(1).getFirstName());
+        assertEquals("Smith", allUsers.get(1).getLastName());
+        assertEquals("https://avatarprovider.com/janesmith_avatar.jpg", allUsers.get(1).getAvatar());
+    }
+
+    @Test
     public void testInsertAndGetUser() throws InterruptedException {
         User user = new User("johndoe@emailprovider.com", "John", "Doe", "https://avatarprovider.com/johndoe_avatar.jpg");
         userDao.insert(user);
