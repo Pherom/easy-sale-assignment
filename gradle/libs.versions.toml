@@ -11,6 +11,7 @@ roomRuntime = "2.6.1"
 roomCompiler = "2.6.1"
 roomTesting = "2.6.1"
 core = "1.6.1"
+coreTesting = "1.1.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -24,6 +25,7 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomTesting" }
 core = { group = "androidx.test", name = "core", version.ref = "core" }
+core-testing = { group = "android.arch.core", name = "core-testing", version.ref = "coreTesting" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

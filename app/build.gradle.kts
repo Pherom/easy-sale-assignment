@@ -29,6 +29,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    configurations.implementation{
+        exclude(group = "com.intellij", module = "annotations")
+    }
 }
 
 dependencies {
@@ -38,7 +42,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.room.runtime)
-    implementation(libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.core)
     testImplementation(libs.junit)

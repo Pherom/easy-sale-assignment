@@ -36,4 +36,8 @@ public class UserRepository {
     public LiveData<List<User>> getAllUsers() {
         return allUsers;
     }
+
+    public LiveData<User> getUserById(int id) {
+        return getUserById(id);
+    }
 }
