@@ -2,6 +2,7 @@ package com.pherom.easysaleassignment.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
@@ -51,6 +52,15 @@ public class UserDaoTest {
         userDao.update(user);
         User updatedUser = LiveDataTestUtil.getOrAwaitValue(userDao.getUserById(user.getId()));
         assertEquals("Smith", updatedUser.getLastName());
+    }
+
+    @Test
+    public void testDeleteUser() throws InterruptedException {
+        User user = new User("janedoe@emailprovider.com", "Jane", "Doe", "https://avatarprovider.com/janedoe_avatar.jpg");
+        userDao.insert(user);
+        user.setId(1);
+        userDao.delete(user);
+        assertNull(LiveDataTestUtil.getOrAwaitValue(userDao.getUserById(user.getId())));
     }
 
     @After
