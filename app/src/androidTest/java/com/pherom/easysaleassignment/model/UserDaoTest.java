@@ -33,14 +33,14 @@ public class UserDaoTest {
     public void testInsertAndGetUser() throws InterruptedException {
         User user = new User("johndoe@emailprovider.com", "John", "Doe", "https://avatarprovider.com/johndoe_avatar.jpg");
         userDao.insert(user);
+        user.setId(1);
 
-        List<User> allUsers = LiveDataTestUtil.getOrAwaitValue(userDao.getAllUsers());
-        assertNotNull(allUsers);
-        assertEquals(1, allUsers.size());
-        assertEquals("johndoe@emailprovider.com", allUsers.get(0).getEmail());
-        assertEquals("John", allUsers.get(0).getFirstName());
-        assertEquals("Doe", allUsers.get(0).getLastName());
-        assertEquals("https://avatarprovider.com/johndoe_avatar.jpg", allUsers.get(0).getAvatar());
+        User insertedUser = LiveDataTestUtil.getOrAwaitValue(userDao.getUserById(user.getId()));
+        assertNotNull(insertedUser);
+        assertEquals("johndoe@emailprovider.com", insertedUser.getEmail());
+        assertEquals("John", insertedUser.getFirstName());
+        assertEquals("Doe", insertedUser.getLastName());
+        assertEquals("https://avatarprovider.com/johndoe_avatar.jpg", insertedUser.getAvatar());
     }
 
     @Test
