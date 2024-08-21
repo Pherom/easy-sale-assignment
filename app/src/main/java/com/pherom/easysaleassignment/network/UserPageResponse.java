@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import java.util.Objects;
 
-public class UserResponse {
+public class UserPageResponse {
 
     private int page;
     @SerializedName("per_page")
@@ -59,7 +59,7 @@ public class UserResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserResponse that = (UserResponse) o;
+        UserPageResponse that = (UserPageResponse) o;
         return page == that.page;
     }
 
