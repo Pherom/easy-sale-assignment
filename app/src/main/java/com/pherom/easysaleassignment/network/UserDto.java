@@ -8,9 +8,9 @@ public class UserDto {
 
     private int id;
     private String email;
-    @SerializedName(name = "first_name")
+    @SerializedName("first_name")
     private String firstName;
-    @SerializedName(name = "last_name")
+    @SerializedName("last_name")
     private String lastName;
     private String avatar;
 
