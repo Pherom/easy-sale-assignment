@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.room.runtime)
     implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     annotationProcessor(libs.room.compiler)
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.core)
