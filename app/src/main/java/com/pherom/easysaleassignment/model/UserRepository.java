@@ -14,10 +14,9 @@ public class UserRepository {
     private final ExecutorService executorService;
     private final LiveData<List<User>> allUsers;
 
-    public UserRepository(Application application) {
-        UserDatabase db = UserDatabase.getDatabase(application);
-        userDao = db.userDao();
+    public UserRepository(UserDao userDao) {
         executorService = Executors.newSingleThreadExecutor();
+        this.userDao = userDao;
         allUsers = userDao.getAllUsers();
     }
 
@@ -38,6 +37,6 @@ public class UserRepository {
     }
 
     public LiveData<User> getUserById(int id) {
-        return getUserById(id);
+        return userDao.getUserById(id);
     }
 }
