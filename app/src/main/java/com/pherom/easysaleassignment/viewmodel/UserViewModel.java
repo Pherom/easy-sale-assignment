@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.pherom.easysaleassignment.R;
 import com.pherom.easysaleassignment.model.User;
 import com.pherom.easysaleassignment.model.UserDatabase;
 import com.pherom.easysaleassignment.model.UserRepository;
@@ -23,7 +24,7 @@ public class UserViewModel extends AndroidViewModel {
     public UserViewModel(@NonNull Application application) {
         super(application);
         UserDatabase userDatabase = UserDatabase.getDatabase(application.getApplicationContext());
-        ApiClient apiClient = ApiClient.getInstance("https://reqres.in/api/");
+        ApiClient apiClient = ApiClient.getInstance(application.getString(R.string.reqres_api_url));
         userRepository = new UserRepository(userDatabase.userDao(), apiClient.getRetrofit().create(UserApiService.class));
         allUsers = userRepository.getAllUsers();
         userRepository.fetchUsersAndSave();
