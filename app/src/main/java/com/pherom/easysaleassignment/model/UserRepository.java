@@ -12,6 +12,7 @@ import com.pherom.easysaleassignment.network.UserPage;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -54,24 +55,32 @@ public class UserRepository {
         return userDao.getUserById(id);
     }
 
-    public List<Future<?>> fetchUsersAndSave() {
-        return fetchUsersAndSaveRec(1);
+    public void fetchUsersAndSave() {
+        int userCount;
+        try {
+            userCount = getUserCount().get();
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (userCount == 0) {
+            fetchUsersAndSaveRec(1);
+        }
     }
 
-    private List<Future<?>> fetchUsersAndSaveRec(int page) {
-        List<Future<?>> result = new LinkedList<>();
-        userApiService.getUserPage(page).enqueue(new Callback<UserPage>() {
+    public Future<Integer> getUserCount() {
+        return executorService.submit(userDao::getUserCount);
+    }
+
+    private void fetchUsersAndSaveRec(int page) {
+            userApiService.getUserPage(page).enqueue(new Callback<UserPage>() {
             @Override
             public void onResponse(@NonNull Call<UserPage> call, @NonNull Response<UserPage> response) {
-                boolean moreUsersToFetch = true;
-                List<Future<?>> futures = fetchUserPageOnResponse(call, response);
-                if (futures.get(0) == null) {
-                    moreUsersToFetch = false;
-                    futures.remove(0);
-                }
-                result.addAll(futures);
+                boolean moreUsersToFetch = fetchUserPageOnResponse(call, response);
                 if (moreUsersToFetch) {
-                    result.addAll(fetchUsersAndSaveRec(page + 1));
+                    fetchUsersAndSaveRec(page + 1);
+                }
+                else {
+                    Log.e(UserRepository.class.getName(), "Failed to fetch users from API");
                 }
             }
 
@@ -80,23 +89,22 @@ public class UserRepository {
                 fetchUserPageOnFailure(call, throwable);
             }
         });
-
-        return result;
     }
 
-    private List<Future<?>> fetchUserPageOnResponse(Call<UserPage> call, Response<UserPage> response) {
-        List<Future<?>> futures = new LinkedList<>();
+    private boolean fetchUserPageOnResponse(Call<UserPage> call, Response<UserPage> response) {
         if (response.isSuccessful() && response.body() != null) {
             UserPage userPage = response.body();
-            if (userPage.getPage() == userPage.getTotalPages()) {
-                futures.add(null);
-            }
             for (UserDto userDto : userPage.getData()) {
                 User user = new User(userDto.getEmail(), userDto.getFirstName(), userDto.getLastName(), userDto.getAvatar());
-                futures.add(insert(user));
+                try {
+                    insert(user).get();
+                } catch (ExecutionException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            return userPage.getPage() < userPage.getTotalPages();
         }
-        return futures;
+        return false;
     }
 
     private void fetchUserPageOnFailure(Call<UserPage> call, Throwable throwable) {

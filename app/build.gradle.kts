@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.picasso)
     androidTestImplementation(libs.mockwebserver)
     annotationProcessor(libs.room.compiler)
     androidTestImplementation(libs.room.testing)

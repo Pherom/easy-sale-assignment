@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class UserDaoTest {
 
@@ -83,6 +84,17 @@ public class UserDaoTest {
         user.setId(1);
         userDao.delete(user);
         assertNull(LiveDataTestUtil.getOrAwaitValue(userDao.getUserById(user.getId())));
+    }
+
+    @Test
+    public void testGetUserCount() throws InterruptedException {
+        User user = new User("janedoe@emailprovider.com", "Jane", "Doe", "https://avatarprovider.com/janedoe_avatar.jpg");
+        userDao.insert(user);
+
+        List<User> allUsers = LiveDataTestUtil.getOrAwaitValue(userDao.getAllUsers());
+        int userCount = userDao.getUserCount();
+
+        assertEquals(allUsers.size(), userCount);
     }
 
     @After
