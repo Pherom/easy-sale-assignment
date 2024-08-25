@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EasySaleAssignment</string>
+    <string name="reqres_api_url">https://reqres.in/api/</string>
 </resources>
