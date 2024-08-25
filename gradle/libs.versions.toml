@@ -11,7 +11,9 @@ roomRuntime = "2.6.1"
 roomCompiler = "2.6.1"
 roomTesting = "2.6.1"
 core = "1.6.1"
-coreTesting = "1.1.1"
+retrofit = "2.11.0"
+converterGson = "2.11.0"
+mockitoCore = "5.12.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,7 +27,10 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomTesting" }
 core = { group = "androidx.test", name = "core", version.ref = "core" }
-core-testing = { group = "android.arch.core", name = "core-testing", version.ref = "coreTesting" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version = "3.14.9" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
