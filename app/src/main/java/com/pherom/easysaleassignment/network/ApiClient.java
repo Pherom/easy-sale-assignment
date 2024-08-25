@@ -9,18 +9,18 @@ public class ApiClient {
     private Retrofit retrofit;
     private static final Object LOCK = new Object();
 
-    private ApiClient() {
+    private ApiClient(String baseUrl) {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://reqres.in/api")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public static ApiClient getInstance() {
+    public static ApiClient getInstance(String baseUrl) {
         if (instance == null) {
             synchronized (LOCK) {
                 if (instance == null) {
-                    instance = new ApiClient();
+                    instance = new ApiClient(baseUrl);
                 }
             }
         }
