@@ -1,10 +1,12 @@
 package com.pherom.easysaleassignment.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +47,14 @@ public class UserRecyclerViewAdapter extends RecyclerView.Adapter<UserRecyclerVi
         User user = users.get(position);
         holder.getNameView().setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
         holder.getEmailView().setText(user.getEmail());
-        Picasso.get().load(user.getAvatar()).into(holder.getAvatarView());
+        String avatar = user.getAvatar();
+        if (URLUtil.isNetworkUrl(avatar) || URLUtil.isContentUrl(avatar)) {
+            Picasso.get().load(user.getAvatar()).into(holder.getAvatarView());
+        }
+        else {
+            Uri avatarUri = Uri.parse(avatar);
+            holder.getAvatarView().setImageURI(avatarUri);
+        }
     }
 
     @Override

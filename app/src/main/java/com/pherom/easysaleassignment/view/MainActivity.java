@@ -1,23 +1,22 @@
 package com.pherom.easysaleassignment.view;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pherom.easysaleassignment.R;
-import com.pherom.easysaleassignment.model.User;
 import com.pherom.easysaleassignment.viewmodel.UserViewModel;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView userRecyclerView;
+    private FloatingActionButton addUserButton;
     private UserRecyclerViewAdapter userRecyclerViewAdapter;
     private UserViewModel userViewModel;
 
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addUserButton = findViewById(R.id.addUserButton);
         userRecyclerView = findViewById(R.id.userRecyclerView);
         userRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userRecyclerViewAdapter = new UserRecyclerViewAdapter(getApplicationContext());
@@ -33,5 +33,9 @@ public class MainActivity extends AppCompatActivity {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         userViewModel.getAllUsers().observe(this, users -> userRecyclerViewAdapter.setUsers(users));
+    }
+
+    public void launchAddUserActivity(View v) {
+        startActivity(new Intent(getApplicationContext(), EditUserActivity.class));
     }
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EasySaleAssignment</string>
     <string name="reqres_api_url">https://reqres.in/</string>
+    <string name="chooser_title">\"Pick Avatar</string>
 </resources>

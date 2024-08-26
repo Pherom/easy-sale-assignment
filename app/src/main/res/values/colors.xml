@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="metal_fringe">#857f74</color>
+    <color name="simply_sage">#a4ac96</color>
+    <color name="frisky">#cadf9e</color>
+    <color name="charcoal_dust">#595358</color>
+    <color name="black_powder">#313628</color>
+    <color name="persian_red">#CF3226</color>
+    <color name="coral_red">#F73E30</color>
+    <color name="crayola">#FF5347</color>
+    <color name="coral_reef">#FF766C</color>
 </resources>
