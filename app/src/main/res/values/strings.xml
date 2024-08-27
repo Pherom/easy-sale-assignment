@@ -6,4 +6,9 @@
     <string name="confirmation_dialog_positive_response">Yes</string>
     <string name="confirmation_dialog_negative_response">No</string>
     <string name="remove_user_confirmation_dialog_message">Delete user?</string>
+    <string name="error_first_name_field_required">The First Name field is required!</string>
+    <string name="error_last_name_field_required">The Last Name field is required!</string>
+    <string name="error_email_field_required">The Email field is required!</string>
+    <string name="error_invalid_email">Email is invalid!</string>
+    <string name="error_invalid_input">Invalid input!</string>
 </resources>

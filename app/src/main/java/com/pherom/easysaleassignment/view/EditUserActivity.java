@@ -11,6 +11,8 @@ import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.util.Patterns;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -108,18 +110,48 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     public void confirmUser(View v) {
-        User editedUser = new User(userEmailEditText.getText().toString(),
-                userFirstNameEditText.getText().toString(),
-                userLastNameEditText.getText().toString(),
-                avatarUrl);
-        if (id != -1) {
-            editedUser.setId(id);
-            userViewModel.update(editedUser);
+        if (validateInput()) {
+            User editedUser = new User(userEmailEditText.getText().toString(),
+                    userFirstNameEditText.getText().toString(),
+                    userLastNameEditText.getText().toString(),
+                    avatarUrl);
+            if (id != -1) {
+                editedUser.setId(id);
+                userViewModel.update(editedUser);
+            }
+            else {
+                userViewModel.insert(editedUser);
+            }
+            finish();
         }
         else {
-            userViewModel.insert(editedUser);
+            Toast.makeText(getApplicationContext(), getString(R.string.error_invalid_input), Toast.LENGTH_SHORT).show();
         }
-        finish();
+    }
+
+    private boolean validateInput() {
+        String inputFirstName = userFirstNameEditText.getText().toString();
+        String inputLastName = userLastNameEditText.getText().toString();
+        String inputEmail = userEmailEditText.getText().toString();
+        boolean result = true;
+
+        if (inputFirstName.isEmpty()) {
+            userFirstNameEditText.setError(getString(R.string.error_first_name_field_required));
+            result = false;
+        }
+        if (inputLastName.isEmpty()) {
+            userLastNameEditText.setError(getString(R.string.error_last_name_field_required));
+            result = false;
+        }
+        if (inputEmail.isEmpty()) {
+            userEmailEditText.setError(getString(R.string.error_email_field_required));
+            result = false;
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches()) {
+            userEmailEditText.setError(getString(R.string.error_invalid_email));
+            result = false;
+        }
+        return result;
     }
 
     public void cancelUser(View v) {
