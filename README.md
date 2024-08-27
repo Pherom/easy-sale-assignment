@@ -67,10 +67,10 @@ Swipe right on the user you'd like to edit, tap "Yes" on the confirmation dialog
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Black             | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000   |
-| Metal Fringe      | ![#857f74](https://via.placeholder.com/10/857f74?text=+) #857f74   |
-| Simply Sage       | ![#a4ac96](https://via.placeholder.com/10/a4ac96?text=+) #a4ac96   |
+| Metal Fringe      | ![#857F74](https://via.placeholder.com/10/857f74?text=+) #857F74   |
+| Simply Sage       | ![#A4AC96](https://via.placeholder.com/10/a4ac96?text=+) #A4AC96   |
 | Coral Reef        | ![#FF766C](https://via.placeholder.com/10/ff766c?text=+) #FF766C   |
-| Frisky            | ![#cadf9e](https://via.placeholder.com/10/00b48a?text=+) #cadf9e   |
+| Frisky            | ![#CADF9E](https://via.placeholder.com/10/cadf9e?text=+) #CADF9E   |
 | Charcoal Dust     | ![#595358](https://via.placeholder.com/10/595358?text=+) #595358   |
 
 
