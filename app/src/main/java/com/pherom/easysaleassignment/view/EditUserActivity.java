@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.pherom.easysaleassignment.R;
 import com.pherom.easysaleassignment.model.User;
 import com.pherom.easysaleassignment.viewmodel.UserViewModel;
+import com.squareup.picasso.Picasso;
 
 public class EditUserActivity extends AppCompatActivity {
 
@@ -31,6 +33,7 @@ public class EditUserActivity extends AppCompatActivity {
     private ImageView userAvatarView;
     private ActivityResultLauncher<Intent> selectImageResultLauncher;
     private String avatarUrl = "test";
+    private int id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +46,33 @@ public class EditUserActivity extends AppCompatActivity {
         userEmailEditText = findViewById(R.id.userEmailEditText);
         userAvatarView = findViewById(R.id.userAvatarView);
 
+        Bundle bundle = getIntent().getExtras();
+        fillFormWithBundle(bundle);
+
         selectImageResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onImageSelection);
         setUpTextWatchers();
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+    }
+
+    private void fillFormWithBundle(Bundle bundle) {
+        if (bundle != null) {
+            id = bundle.getInt("id");
+            String firstName = bundle.getString("firstName");
+            String lastName = bundle.getString("lastName");
+            userTitleView.setText(String.format("%s %s", firstName, lastName));
+            userFirstNameEditText.setText(firstName);
+            userLastNameEditText.setText(lastName);
+            userEmailEditText.setText(bundle.getString("email"));
+            avatarUrl = bundle.getString("avatar");
+            if (URLUtil.isNetworkUrl(avatarUrl) || URLUtil.isContentUrl(avatarUrl)) {
+                Picasso.get().load(avatarUrl).into(userAvatarView);
+            }
+            else {
+                Uri avatarUri = Uri.parse(avatarUrl);
+                userAvatarView.setImageURI(avatarUri);
+            }
+        }
     }
 
     private void onImageSelection(ActivityResult result) {
@@ -82,12 +108,17 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     public void confirmUser(View v) {
-        userViewModel.insert(new User(
-                userEmailEditText.getText().toString(),
+        User editedUser = new User(userEmailEditText.getText().toString(),
                 userFirstNameEditText.getText().toString(),
                 userLastNameEditText.getText().toString(),
-                avatarUrl
-        ));
+                avatarUrl);
+        if (id != -1) {
+            editedUser.setId(id);
+            userViewModel.update(editedUser);
+        }
+        else {
+            userViewModel.insert(editedUser);
+        }
         finish();
     }
 

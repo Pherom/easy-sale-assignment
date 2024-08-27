@@ -5,12 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".view.EditUserActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,11 +20,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/black">
 
                 <Button
                     android:id="@+id/userCancelButton"
@@ -31,9 +35,9 @@
                     android:layout_marginTop="40dp"
                     android:backgroundTint="@color/coral_reef"
                     android:fontFamily="@font/roboto_bold"
+                    android:onClick="cancelUser"
                     android:text="Cancel"
                     android:textColor="@color/charcoal_dust"
-                    android:onClick="cancelUser"
                     app:icon="@drawable/ic_cancel"
                     app:iconTint="@color/charcoal_dust"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -49,9 +53,9 @@
                     android:layout_marginTop="40dp"
                     android:backgroundTint="@color/frisky"
                     android:fontFamily="@font/roboto_bold"
+                    android:onClick="confirmUser"
                     android:text="Confirm"
                     android:textColor="@color/charcoal_dust"
-                    android:onClick="confirmUser"
                     app:icon="@drawable/ic_confirm"
                     app:iconTint="@color/charcoal_dust"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -145,8 +149,8 @@
                     android:layout_marginTop="-48dp"
                     android:layout_marginEnd="16dp"
                     android:clickable="true"
-                    android:src="@drawable/ic_add_image"
                     android:onClick="selectImage"
+                    android:src="@drawable/ic_add_image"
                     app:backgroundTint="@color/frisky"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/userAvatarView"

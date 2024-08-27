@@ -2,4 +2,8 @@
     <string name="app_name">EasySaleAssignment</string>
     <string name="reqres_api_url">https://reqres.in/</string>
     <string name="chooser_title">\"Pick Avatar</string>
+    <string name="edit_user_confirmation_dialog_message">Edit user?</string>
+    <string name="confirmation_dialog_positive_response">Yes</string>
+    <string name="confirmation_dialog_negative_response">No</string>
+    <string name="remove_user_confirmation_dialog_message">Delete user?</string>
 </resources>
