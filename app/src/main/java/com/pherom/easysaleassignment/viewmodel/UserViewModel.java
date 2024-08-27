@@ -49,4 +49,8 @@ public class UserViewModel extends AndroidViewModel {
     public LiveData<User> getUserById(int id) {
         return userRepository.getUserById(id);
     }
+
+    public Future<Integer> getUserCount() {
+        return userRepository.getUserCount();
+    }
 }

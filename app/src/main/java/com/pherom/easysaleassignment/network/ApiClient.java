@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static volatile ApiClient instance;
-    private Retrofit retrofit;
+    private final Retrofit retrofit;
     private static final Object LOCK = new Object();
 
     private ApiClient(String baseUrl) {

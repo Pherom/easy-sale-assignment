@@ -38,12 +38,13 @@ android {
 dependencies {
 
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.room.runtime)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.picasso)
+    implementation(libs.material)
     androidTestImplementation(libs.mockwebserver)
     annotationProcessor(libs.room.compiler)
     androidTestImplementation(libs.room.testing)

@@ -7,9 +7,9 @@ import retrofit2.http.Query;
 
 public interface UserApiService {
 
-    @GET("/users")
+    @GET("/api/users")
     Call<UserPage> getUserPage(@Query("page") int pageNum);
 
-    @GET("/users/{Id}")
+    @GET("/api/users/{Id}")
     Call<UserDto> getUser(@Path("Id") int id);
 }

@@ -91,4 +91,15 @@ public class UserViewModelTest {
         assertNull(LiveDataTestUtil.getOrAwaitValue(userViewModel.getUserById(user.getId())));
     }
 
+    @Test
+    public void testGetUserCount() throws ExecutionException, InterruptedException {
+        User user = new User("janedoe@emailprovider.com", "Jane", "Doe", "https://avatarprovider.com/janedoe_avatar.jpg");
+        userViewModel.insert(user).get();
+
+        List<User> allUsers = LiveDataTestUtil.getOrAwaitValue(userViewModel.getAllUsers());
+        int userCount = userViewModel.getUserCount().get();
+
+        assertEquals(allUsers.size(), userCount);
+    }
+
 }
