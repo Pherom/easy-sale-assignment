@@ -37,17 +37,10 @@ You can download the apk file from [here](https://www.mediafire.com/file/qn3w2fv
     
 ## Demo
 
-#### Add User Demo:
+Add User Demo              |  Edit User Demo           |  Delete User Demo
+:-------------------------:|:-------------------------:|:-------------------------:
+![Add User Demo](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRhdTA1eW53dWUzazBoNmc3a2J3NHJlYTl0anBiaGhibnM2bGc4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5tOFEsECFdAK0xIHEm/giphy.gif)  |  ![Edit User Demo](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXAza3AzNWJ4N2hvazF2cm9xaTBlcWIyN2M3dnp2bXd6YXlhNHg4ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ui1Irjvf3ow61zJqHs/giphy.webp)  |  ![Delete User Demo](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGhrM2t4aWJ1aTh3eXZnbDBpenA4a2lweGxobDlmaHc5dDM0bGJ4aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PCd0Ef7yM1w7cMz1mC/giphy.webp)
 
-![Add User Demo](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRhdTA1eW53dWUzazBoNmc3a2J3NHJlYTl0anBiaGhibnM2bGc4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5tOFEsECFdAK0xIHEm/giphy.gif)
-
-#### Edit User Demo:
-
-![Edit User Demo](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXAza3AzNWJ4N2hvazF2cm9xaTBlcWIyN2M3dnp2bXd6YXlhNHg4ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ui1Irjvf3ow61zJqHs/giphy.webp)
-
-#### Delete User Demo:
-
-![Delete User Demo](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGhrM2t4aWJ1aTh3eXZnbDBpenA4a2lweGxobDlmaHc5dDM0bGJ4aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PCd0Ef7yM1w7cMz1mC/giphy.webp)
 ## FAQ
 
 #### How do I create a new user?
